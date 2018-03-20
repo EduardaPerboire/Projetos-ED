@@ -13,9 +13,9 @@ public class Conversao {
 			//Coloquei -1 para nao rodar esse if que nao foi terminado (:
 			if(i == -1) {
 				if(digitos.charAt(i) - '0' == 0) {
-					//POSITIVOOOOOO
+					//PARRR
 				}else if (digitos.charAt(i) - '0' == 1) {
-					//NEGATIVOOOOOO
+					//IMPARRR
 				}
 			}else {
 			//os outros digitos normais
@@ -59,6 +59,12 @@ public class Conversao {
 	}
 	
 	public String converterDecimalParaBase(int valor, int b) {
+		boolean isNegativo = false;
+		if(valor < 0) {
+			isNegativo = true;
+			valor = valor * -1;
+		}
+		
 		String resultado = "";
 		if(valor < b) {
 			int i = valor % b;
@@ -69,6 +75,27 @@ public class Conversao {
 		resultado += converterDecimalParaBase(valor/b, b);
 		resultado += transformarIntParaChar(valor % b);
 		
+		if(isNegativo) {
+			String temp = "";
+			for(int i = 0; i < resultado.length(); i++) {
+				int n = transformarCharParaInt(resultado.charAt(i));
+				int a = (b - 1) - (n);
+				
+				if(i == resultado.length()-1) {
+					a++;
+					if(a >= b) {
+						String[] numeros = new String[resultado.length()];
+						for(int j = numeros.length; j >= 0; j--){
+							numeros[j] = transformarIntParaChar((a % b));
+							a = a/b;
+							temp += numeros[j];
+						}
+					}
+				}
+				temp += transformarIntParaChar(a);
+			}
+			resultado = temp;
+		}
 		return resultado;
 	}
 	

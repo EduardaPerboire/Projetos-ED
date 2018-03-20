@@ -6,7 +6,7 @@ public class Main {
 		//int numero = conversao.converterBaseParaDecimal("110001100111000", 2);
 		//System.out.println(numero);
 		
-		String numero = conversao.converterDecimalParaBase(25400, 2);
+		String numero = conversao.converterDecimalParaBase(-51, 16);
 		System.out.println(numero);
 	}
 
