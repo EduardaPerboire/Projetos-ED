@@ -6,8 +6,32 @@ public class Conversao {
 			return Integer.parseInt(digitos);
 		}
 		int tamanho = digitos.length();
-		int resultado = 0;
 		digitos.toUpperCase();
+		
+		if(tamanho==8) {
+			if(digitos.charAt(0) >= b/2) {
+				//negativo
+				
+				String temp = "";
+				
+				for(int i = digitos.length()-1; i >= 0; i--) {
+					int n = transformarCharParaInt(digitos.charAt(i));
+					int a = 0;
+					
+					if(i == digitos.length()-1) {
+						a = n-1; // diminuir um
+					}
+					
+					a = (b -1) - a;
+					temp += transformarIntParaChar(a);
+					
+				}
+				System.out.println(temp);
+			}
+			
+		}
+		
+		int resultado = 0;
 		for(int i = tamanho-1; i >= 0; i--) {
 			//quando i == 0, seria o digito mais significativo.
 			//Coloquei -1 para nao rodar esse if que nao foi terminado (:
