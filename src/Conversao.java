@@ -91,26 +91,28 @@ public class Conversao {
 		String resultado = "";
 		if(valor < b) {
 			int i = valor % b;
+			for(int index = 0; index < 32; index++) {
+				resultado += "0";
+			}
+			resultado = resultado.substring(1);
 			resultado += transformarIntParaChar(i);
 			return resultado;
 		}
 		
+		
 		resultado += converterDecimalParaBase(valor/b, b);
 		resultado += transformarIntParaChar(valor % b);
+		resultado = resultado.substring(1);
+		/*String novoResultado = "";
+		int index = 0;
+		while(index < 32 - resultado.length()) {
+			novoResultado = "0";
+			index++;
+		}
+		resultado = novoResultado + resultado;
+		System.out.println("Index: " + index);
+		System.out.println("Tamanho : " + resultado.length());*/
 		
-		char[] vetorNBits = new char[32];
-		for(int i = 32; i >= 0; i --) {
-			if(i < resultado.length()) {
-				System.out.println(resultado.charAt(i));
-				vetorNBits[32 - i] = resultado.charAt(i);
-			}else {
-				vetorNBits[32 - i] = '0';
-			}
-		}
-		resultado = "";
-		for(int i  = 0; i < 32; i++) {
-			resultado += vetorNBits[i];
-		}
 		
 		if(isNegativo) {
 			String temp = "";
@@ -166,3 +168,19 @@ public class Conversao {
 		return c;
 	}
 }
+
+
+/*char[] vetorNBits = new char[32];
+		for(int i = 32; i >= 0; i --) {
+			if(i < resultado.length()) {
+				System.out.println(resultado.charAt(i));
+				vetorNBits[32 - i] = resultado.charAt(i);
+			}else {
+				vetorNBits[32 - i] = '0';
+			}
+		}
+		resultado = "";
+		for(int i  = 0; i < 32; i++) {
+			resultado += vetorNBits[i];
+		}
+*/
