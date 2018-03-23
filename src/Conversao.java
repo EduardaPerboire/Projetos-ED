@@ -26,9 +26,8 @@ public class Conversao {
 					temp += transformarIntParaChar(a);
 					
 				}
-				System.out.println(temp);
+				//System.out.println(temp);
 			}
-			
 		}
 		
 		int resultado = 0;
@@ -99,6 +98,20 @@ public class Conversao {
 		resultado += converterDecimalParaBase(valor/b, b);
 		resultado += transformarIntParaChar(valor % b);
 		
+		char[] vetorNBits = new char[32];
+		for(int i = 32; i >= 0; i --) {
+			if(i < resultado.length()) {
+				System.out.println(resultado.charAt(i));
+				vetorNBits[32 - i] = resultado.charAt(i);
+			}else {
+				vetorNBits[32 - i] = '0';
+			}
+		}
+		resultado = "";
+		for(int i  = 0; i < 32; i++) {
+			resultado += vetorNBits[i];
+		}
+		
 		if(isNegativo) {
 			String temp = "";
 			for(int i = 0; i < resultado.length(); i++) {
@@ -120,6 +133,7 @@ public class Conversao {
 			}
 			resultado = temp;
 		}
+		
 		return resultado;
 	}
 	
