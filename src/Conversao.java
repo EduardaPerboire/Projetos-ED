@@ -103,36 +103,33 @@ public class Conversao {
 		resultado += converterDecimalParaBase(valor/b, b);
 		resultado += transformarIntParaChar(valor % b);
 		resultado = resultado.substring(1);
-		/*String novoResultado = "";
-		int index = 0;
-		while(index < 32 - resultado.length()) {
-			novoResultado = "0";
-			index++;
-		}
-		resultado = novoResultado + resultado;
-		System.out.println("Index: " + index);
-		System.out.println("Tamanho : " + resultado.length());*/
 		
-		
+		int a = 0, n = 0;
 		if(isNegativo) {
 			String temp = "";
 			for(int i = 0; i < resultado.length(); i++) {
-				int n = transformarCharParaInt(resultado.charAt(i));
-				int a = (b - 1) - (n);
+				n = transformarCharParaInt(resultado.charAt(i));
+				a = (b - 1) - (n);
 				
 				if(i == resultado.length()-1) {
 					a++;
-					if(a >= b) {
-						String[] numeros = new String[resultado.length()];
-						for(int j = numeros.length; j >= 0; j--){
-							numeros[j] = transformarIntParaChar((a % b));
-							a = a/b;
-							temp += numeros[j];
-						}
-					}
 				}
+				
 				temp += transformarIntParaChar(a);
 			}
+			
+			for(int i = resultado.length()-1; i >= 0; i--) {
+				int atual = transformarCharParaInt(temp.charAt(i));
+				System.out.println(temp.charAt(i));
+				if(atual >= b) {
+					System.out.println("wooow");
+					temp = temp.substring(0, i) + 0 + temp.substring(i+1);
+					
+					System.out.println(temp.charAt(i));
+					temp = temp.substring(0, i-1) + (transformarCharParaInt(temp.charAt(i-1))+1) + temp.substring(i);
+				}
+			}
+			
 			resultado = temp;
 		}
 		
@@ -168,19 +165,3 @@ public class Conversao {
 		return c;
 	}
 }
-
-
-/*char[] vetorNBits = new char[32];
-		for(int i = 32; i >= 0; i --) {
-			if(i < resultado.length()) {
-				System.out.println(resultado.charAt(i));
-				vetorNBits[32 - i] = resultado.charAt(i);
-			}else {
-				vetorNBits[32 - i] = '0';
-			}
-		}
-		resultado = "";
-		for(int i  = 0; i < 32; i++) {
-			resultado += vetorNBits[i];
-		}
-*/
